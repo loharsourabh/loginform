@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface User {
   username: string;
@@ -12,10 +13,15 @@ interface User {
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
+  constructor(
+    private router: Router,
+  ) {}
+
   username = '';
   email = '';
   password = '';
   valid = true;
+  unique = true;
 
   uniqueUser(userData: User[], currentUser: User) {
     for (let user of userData) {
@@ -24,6 +30,7 @@ export class SignupComponent {
           (key === 'username' || key === 'email') &&
           user[key] === currentUser[key]
         ) {
+          
           return false;
         }
       }
@@ -53,6 +60,12 @@ export class SignupComponent {
         if (this.uniqueUser(users, currentUser)) {
           users.push(currentUser);
           localStorage.setItem('usersRaw', JSON.stringify(users));
+          localStorage.setItem('login', JSON.stringify(currentUser));
+          this.router.navigateByUrl('/');
+        }
+
+        else {
+          this.unique = false
         }
       }
 

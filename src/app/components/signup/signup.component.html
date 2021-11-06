@@ -5,6 +5,7 @@
             <span>
                 Username
                 <span *ngIf='!valid' class='invalid_entry'>Invalid</span>
+                <span *ngIf='!unique' class='invalid_entry'>Already exists</span>
             </span> 
             <input [(ngModel)]='username'>
         </label>
@@ -12,6 +13,7 @@
             <span>
                 Email
                 <span *ngIf='!valid' class='invalid_entry'>Invalid</span>
+                <span *ngIf='!unique' class='invalid_entry'>Already exists</span>
             </span>
             <input [(ngModel)]='email'>
         </label>

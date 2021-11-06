@@ -4,6 +4,10 @@
     border-radius: 0.5em;
 }
 
+.invalid_entry {
+    color: red;
+}
+
 .login_inputs {
     display: flex;
     flex-direction: column;

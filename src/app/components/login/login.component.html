@@ -1,12 +1,20 @@
 <div class='login'>
     <h1>Enter your login details.</h1>
     <div class='login_inputs'>
-        <label>Username
-            <input>
+        <label>
+            <span>
+                Username
+                <span *ngIf='!exists' class='invalid_entry'>Doesn't exist</span>
+            </span>
+            <input [(ngModel)]='username'>
         </label>
-        <label>Password
-            <input>
+        <label>
+            <span>
+                Password
+                <span *ngIf='!exists' class='invalid_entry'>Doesn't exist</span>
+            </span>
+            <input [(ngModel)]='password'>
         </label>
     </div>
-    <button class='login_button'>Log in</button>
+    <button class='login_button' (click)='loginUser()'>Log in</button>
 </div>

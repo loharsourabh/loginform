@@ -1,7 +1,13 @@
 <div class='home'>
-    <h1 class='login_heading'>You are not logged in.</h1>
-    <div class='login_links'>
+    <h1 class='login_heading' *ngIf='!loggedUser'>You are not logged in.</h1>
+    <h1 class='login_heading' *ngIf='loggedUser'>Logged in as {{loggedUser}}</h1>
+    <div class='login_links' *ngIf='!loggedUser'>
         <a class='login_link' routerLink='/login'>Log in</a>
         <a class='login_link' routerLink='/signup'>Sign up</a>
     </div>
+    <button
+        *ngIf='loggedUser'
+        class='logout_button login_link'
+        (click)='logout()'
+    >Log out</button>
 </div>
