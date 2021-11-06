@@ -1,0 +1,30 @@
+<div class='signup'>
+    <h1 class='signup_heading'>Create your new account.</h1>
+    <div class='signup_inputs'>
+        <label>
+            <span>
+                Username
+                <span *ngIf='!valid' class='invalid_entry'>Invalid</span>
+            </span> 
+            <input [(ngModel)]='username'>
+        </label>
+        <label>
+            <span>
+                Email
+                <span *ngIf='!valid' class='invalid_entry'>Invalid</span>
+            </span>
+            <input [(ngModel)]='email'>
+        </label>
+        <label>
+            <span>
+                Password
+                <span *ngIf='!valid' class='invalid_entry'>Invalid</span>
+            </span>
+            <input [(ngModel)]='password'>
+        </label>
+    </div>
+    <button 
+        class='signup_button'
+        (click)='validateAndSave()'
+    >Sign up</button>
+</div>

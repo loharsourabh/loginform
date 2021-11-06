@@ -1,0 +1,40 @@
+.login {
+    padding: 1em 2em;
+    border: 1px solid black;
+    border-radius: 0.5em;
+}
+
+.login_inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.login_inputs > label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.login_inputs input {
+    font: 1em 'Roboto', sans-serif;
+    border: 1px solid black;
+    border-radius: 0.25rem;
+    height: 2em;
+}
+
+.login_button {
+    font: 1em 'Roboto', sans-serif;
+    width: 100%;
+    height: 2.5em;
+    border: 0;
+    border: 2px solid hsl(233deg, 65%, 27%);
+    border-radius: 0.25em;
+    margin-top: 1.5em;
+    color: white;
+    background: hsl(232deg, 65%, 27%);
+}
+
+.login_button:active {
+    box-shadow: inset 0 0 0 2px white;
+}
