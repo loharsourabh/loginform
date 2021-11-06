@@ -38,6 +38,10 @@ export class LoginComponent {
         this.exists = false;
       }
     }
+    
+    else {
+      this.exists = false;
+    }
   }
 
 }
