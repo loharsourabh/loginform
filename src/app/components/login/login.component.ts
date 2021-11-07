@@ -15,7 +15,6 @@ export class LoginComponent {
   password = '';
   exists = true;
   
-  
   loginUser() {
     const usersRaw = localStorage.getItem('usersRaw');
 
@@ -26,7 +25,6 @@ export class LoginComponent {
           user.password === this.password
         ) {
           localStorage.setItem('login', JSON.stringify(user));
-          // this.router.navigateByUrl('/');
         }
       }
 
@@ -38,10 +36,13 @@ export class LoginComponent {
         this.exists = false;
       }
     }
-    
+
     else {
       this.exists = false;
     }
   }
 
+  closeError() {
+    this.exists = true;
+  }
 }

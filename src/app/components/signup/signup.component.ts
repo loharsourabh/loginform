@@ -20,15 +20,17 @@ export class SignupComponent {
   username = '';
   email = '';
   password = '';
-  valid = true;
+  validUsername = true;
+  validEmail = true;
+  validPassword = true;
   unique = true;
 
-  uniqueUser(userData: User[], currentUser: User) {
+  uniqueUser(userData: User[], newUser: User) {
     for (let user of userData) {
       for (let key in user) {
         if (
           (key === 'username' || key === 'email') &&
-          user[key] === currentUser[key]
+          user[key] === newUser[key]
         ) {
           
           return false;
@@ -40,15 +42,19 @@ export class SignupComponent {
   }
   
   validateAndSave() {
+    this.validUsername = /[a-zA-Z0-9_]+/.test(this.username);
+    this.validEmail = /^[a-zA-Z0-9_]+@[a-zA-Z]+.?[a-zA-Z]+$/.test(this.email);
+    this.validPassword = /[a-zA-Z0-9_]{8,}/.test(this.password);
+
+
     if (
-      this.username.match(/[a-zA-Z0-9_]+/g) &&
-      this.email.match(/[a-zA-Z0-9_]+@[a-zA-Z]+.?[a-zA-Z]+/g) &&
-      this.password.match(/[a-zA-Z0-9_]{8,}/g)
+      this.validUsername &&
+      this.validEmail &&
+      this.validPassword
     ) {
 
-      this.valid = true;
       const usersRaw = localStorage.getItem('usersRaw');
-      const currentUser = {
+      const newUser = {
         username: this.username,
         email: this.email,
         password: this.password,
@@ -57,10 +63,10 @@ export class SignupComponent {
       if (usersRaw) {
         const users = JSON.parse(usersRaw);
 
-        if (this.uniqueUser(users, currentUser)) {
-          users.push(currentUser);
+        if (this.uniqueUser(users, newUser)) {
+          users.push(newUser);
           localStorage.setItem('usersRaw', JSON.stringify(users));
-          localStorage.setItem('login', JSON.stringify(currentUser));
+          localStorage.setItem('login', JSON.stringify(newUser));
           this.router.navigateByUrl('/');
         }
 
@@ -70,12 +76,14 @@ export class SignupComponent {
       }
 
       else {
-        localStorage.setItem('usersRaw', JSON.stringify([currentUser]));
+        localStorage.setItem('usersRaw', JSON.stringify([newUser]));
+        localStorage.setItem('login', JSON.stringify(newUser));
+        this.router.navigateByUrl('/');
       }
     }
+  }
 
-    else {
-      this.valid = false;
-    }
+  closeError() {
+    this.unique = true;
   }
 }
