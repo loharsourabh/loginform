@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 // ithead@jusbid.in
+// 
 
 @Component({
   selector: 'app-home',
