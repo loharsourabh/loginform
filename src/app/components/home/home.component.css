@@ -4,7 +4,7 @@
     padding: 1em 2em;
     border: 1px solid black;
     border-radius: 0.5rem;
-    margin: 0 auto;
+    margin: 1em auto;
 }
 
 .login_heading {
@@ -21,4 +21,25 @@
 
 .logout_button {
     margin-bottom: 1em;;
+}
+
+.home_hotels {
+    width: 60em;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.home_hotel {
+    height: 12em;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    display: flex;
+    gap: 1em;
+}
+
+.home_hotel_img {
+    width: 12em;
+    /* height: 100%; */
 }

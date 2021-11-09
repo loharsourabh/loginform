@@ -23,6 +23,8 @@ export class HomeComponent implements OnInit {
       this.loggedUser = JSON.parse(userString).username;
 
       this.hotels.getHotels().subscribe((data: any) => {
+        console.log(data);
+
         this.hotelsData = data.data;
       });
 
