@@ -22,4 +22,10 @@ export class HotelsService {
     
     return this.http.post(hotelsUrl, body, reqOptions);
   }
+
+  getAmenities() {
+    const amenetiesUrl = `${this.baseUrl}/get-amenities`;
+
+    return this.http.get(amenetiesUrl);
+  }
 }

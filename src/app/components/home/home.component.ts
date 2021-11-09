@@ -14,7 +14,13 @@ export class HomeComponent implements OnInit {
 
   loggedUser: string | null = null;
   hotelsData: any = [];
+  hotelsAmenityData: any = [];
   baseUrl = this.hotels.baseUrl;
+
+  logout() {
+    this.loggedUser = null;
+    localStorage.removeItem('login');
+  }
 
   ngOnInit() {
     const userString = localStorage.getItem('login');
@@ -28,11 +34,16 @@ export class HomeComponent implements OnInit {
         this.hotelsData = data.data;
       });
 
+      this.hotels.getAmenities().subscribe((data: any) => {
+        console.log(data);
+
+        this.hotelsAmenityData = data.data;
+      })
+
     }
   }
 
-  logout() {
-    this.loggedUser = null;
-    localStorage.removeItem('login');
+  ngDoCheck() {
+    console.log('changes');
   }
 }
