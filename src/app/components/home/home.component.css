@@ -19,19 +19,6 @@
     gap: 1em;
 }
 
-.login_link {
-    font-size: 1.2em;
-    width: 100%;
-    height: 2.25em;
-    border-radius: 0.25rem;
-    color: white;
-    border: 2px solid hsl(232deg, 65%, 27%);
-    background: hsl(232deg, 65%, 27%);
-    text-decoration: none;
-    display: grid;
-    place-items: center;
-}
-
-.login_link:active {
-    box-shadow: inset 0 0 0 2px white;
+.logout_button {
+    margin-bottom: 1em;;
 }

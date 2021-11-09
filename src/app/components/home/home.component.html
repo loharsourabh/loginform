@@ -11,3 +11,10 @@
         (click)='logout()'
     >Log out</button>
 </div>
+
+<div
+    class='home_hotels'
+    *ngIf='hotelsData.length > 0'
+>
+    <div *ngFor='let item of hotelsData'>{{item.name}}</div>
+</div>
