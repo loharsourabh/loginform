@@ -1,6 +1,7 @@
 // ithead@jusbid.in
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { filter } from 'rxjs';
 import { HotelsService } from '../../services/hotels.service';
 
 @Component({
@@ -13,13 +14,13 @@ export class HomeComponent implements OnInit {
     private hotels: HotelsService,
   ) { }
 
+  baseUrl = this.hotels.baseUrl;
   loggedUser: string | null = null;
   hotelsData: any = [];
   amenityCollection: any = [];
   amenityNames: any = [];
   amenitiesMatched = false;
-
-  baseUrl = this.hotels.baseUrl;
+  filterName = '';
 
   logout() {
     this.loggedUser = null;

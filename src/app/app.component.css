@@ -1,7 +1,5 @@
 .app {
-    border: 1px solid black;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    /* border: 1px solid black; */
+    width: 60em;
+    margin: 0 auto;
 }

@@ -13,7 +13,7 @@ export class HotelsService {
 
   getHotels() {
     const hotelsUrl = `${this.baseUrl}/home-search`;
-    const body = JSON.stringify({"city":"Udaipur","rooms":"1","arrival":"08-11-2021","departure":"08-11-2021","sbpc":"true","is_searchBy_HotelName":"false"});
+    const body = JSON.stringify({"city":"Udaipur","state":"Rajasthan","rooms":"1","guestNo":"1","arrival":"10-11-2021","departure":"11-11-2021","lat":"24.585445","long":"73.712479"});
     const reqOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
