@@ -31,7 +31,7 @@
 }
 
 .home_hotel {
-    height: 12em;
+    height: 15em;
     border: 1px solid black;
     border-radius: 0.5rem;
     overflow: hidden;
@@ -40,6 +40,12 @@
 }
 
 .home_hotel_img {
-    width: 12em;
-    /* height: 100%; */
+    width: 15em;
+    height: 100%;
+    object-fit: cover;
+}
+
+.home_hotel_amenity {
+    display: flex;
+    gap: 1em;
 }

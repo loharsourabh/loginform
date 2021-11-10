@@ -18,7 +18,7 @@
 >
     <div
         class='home_hotel'
-        *ngFor='let hotel of hotelsData'
+        *ngFor='let hotel of hotelsData; let hotelIndex = index'
     >
         <img
             class='home_hotel_img'
@@ -29,6 +29,10 @@
             <p>City: {{hotel.city}}</p>
             <p>Room price: {{hotel.room_price}}</p>
             <p>Address: {{hotel.address}}</p>
+            <div class='home_hotel_amenity'>
+                <p>Services:</p>
+                <p *ngFor='let name of amenityNames[hotelIndex].names'>{{name}},</p>
+            </div>
         </div>
     </div>
 </div>
