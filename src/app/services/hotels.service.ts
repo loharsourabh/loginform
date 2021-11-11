@@ -7,13 +7,23 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class HotelsService {
   constructor(
     private http: HttpClient,
-  ) { }
+  ) {}
 
   baseUrl = 'https://jusbid.in:1337';
 
-  getHotels() {
+  getHotels(city: string) {
     const hotelsUrl = `${this.baseUrl}/home-search`;
-    const body = JSON.stringify({"city":"Udaipur","state":"Rajasthan","rooms":"1","guestNo":"1","arrival":"10-11-2021","departure":"11-11-2021","lat":"24.585445","long":"73.712479"});
+    const body = JSON.stringify({
+      "city": city,
+      "state":"Rajasthan",
+      "rooms":"1",
+      "guestNo":"1",
+      "arrival":"10-11-2021",
+      "departure":"11-11-2021",
+      "lat":"24.585445",
+      "long":"73.712479"
+    });
+
     const reqOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',

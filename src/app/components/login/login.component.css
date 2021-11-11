@@ -1,5 +1,7 @@
 .login {
+    max-width: max-content;
     padding: 1em 2em;
+    margin: 1em auto;
     border: 1px solid black;
     border-radius: 0.5rem;
 }

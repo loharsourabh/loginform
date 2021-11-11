@@ -1,0 +1,43 @@
+.filter {
+    /* border: 1px solid black; */
+    margin-bottom: 1em;
+    height: 2.25em;
+    display: flex;
+    /* gap: 2em; */
+    justify-content: space-between;
+}
+
+.filter_input {
+    font: 1.1em 'Roboto', sans-serif;
+    width: 12.5em;
+    height: 100%;
+}
+
+input.filter_input {
+    border: 1px solid black;
+    border-radius: 0.25em;
+}
+
+
+.filter_amenities_parent {
+    position: relative;
+    width: 15em;
+}
+
+button.filter_input {
+    font: 1em 'Roboto', sans-serif;
+    width: 100%;
+}
+
+.filter_amenities_list {
+    position: absolute;
+    height: 30em;
+    border: 1px solid black;
+    border-radius: 0.25em;
+    margin-top: 0.5em;
+    background: white;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}

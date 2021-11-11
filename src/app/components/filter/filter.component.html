@@ -1,0 +1,34 @@
+<div class='filter'>
+    <input
+        class='filter_input'
+        placeholder='Search by name'
+        type='search'
+        [ngModel]='hotelSearch'
+        (ngModelChange)='emitHotelSearch($event)'
+    >
+    <input
+        class='filter_input'
+        placeholder='Search by city'
+        type='search'
+        [(ngModel)]='citySearch'
+        (keyup)='emitCitySearch($event)'
+    >
+    <div class='filter_amenities_parent'>
+        <button
+            class='filter_input'
+            (click)='toggleAmenityList()'
+        >Pick services</button>
+        <div
+            class='filter_amenities_list'
+            [style.display]='listDisplay'
+        >
+            <label
+                class='filter_amenity'
+                *ngFor='let amenity of allAmenities'
+            >
+                <input type='checkbox'>
+                {{amenity.name}}
+            </label>
+        </div>
+    </div>
+</div>

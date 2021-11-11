@@ -1,7 +1,5 @@
 // ithead@jusbid.in
-import { ThrowStmt } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
-import { filter } from 'rxjs';
+import { Component, DoCheck, OnInit } from '@angular/core';
 import { HotelsService } from '../../services/hotels.service';
 
 @Component({
@@ -9,18 +7,38 @@ import { HotelsService } from '../../services/hotels.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, DoCheck {
   constructor(
     private hotels: HotelsService,
-  ) { }
+  ) {}
 
   baseUrl = this.hotels.baseUrl;
   loggedUser: string | null = null;
-  hotelsData: any = [];
-  amenityCollection: any = [];
+  allHotels: any = [];
+  filteredHotels: any = [];
+  allAmenities: any = [];
   amenityNames: any = [];
   amenitiesMatched = false;
-  filterName = '';
+  hotelSearch = '';
+
+  updateHotelSearch(hotelName: string) {
+    if (hotelName.length === 0) {
+      this.filteredHotels = this.allHotels;
+    }
+
+    else if (hotelName.length > 0) {
+      this.filteredHotels = this.allHotels.filter((hotel: any) => {
+        return hotel.name.toLowerCase().includes(hotelName.toLowerCase());
+      });
+    }
+  }
+  
+  updateCitySearch(cityName: string) {
+    this.hotels.getHotels(cityName).subscribe((data: any) => {
+      this.allHotels = data.data;
+      this.filteredHotels = data.data;
+    })
+  }
 
   logout() {
     this.loggedUser = null;
@@ -29,35 +47,38 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     const userString = localStorage.getItem('login');
-
+    
     if (userString) {
+      console.log(['here']);
       this.loggedUser = JSON.parse(userString).username;
 
-      this.hotels.getHotels().subscribe((data: any) => {
-        this.hotelsData = data.data;
+      this.hotels.getHotels('Udaipur').subscribe((data: any) => {
+        this.allHotels = data.data;
+        this.filteredHotels = data.data;
       });
 
+      // fetch amenities
       this.hotels.getAmenities().subscribe((data: any) => {
-        this.amenityCollection = data.data;
-      })
-
+        this.allAmenities = data.data;
+      });
     }
   }
-
+  
   ngDoCheck() {
+    // matching amenity ids
     if (
       !this.amenitiesMatched &&
-      this.hotelsData.length &&
-      this.amenityCollection.length
+      this.filteredHotels.length &&
+      this.allAmenities.length
     ) {
-      for (let hotel of this.hotelsData) {
+      for (let hotel of this.filteredHotels) {
         this.amenityNames.push({
           id: hotel.id,
           names: [],
         });
 
         for (let amenityId of hotel.hotel_amenities) {
-          for (let amenityObj of this.amenityCollection) {
+          for (let amenityObj of this.allAmenities) {
             const names = this.amenityNames[this.amenityNames.length - 1].names;
 
             if (names.length === 3) {
@@ -71,10 +92,6 @@ export class HomeComponent implements OnInit {
         }
       }
 
-      console.log(['amenityCollection', this.amenityCollection]); 
-      console.log(['hotesData', this.hotelsData]);
-      console.log(this.amenityNames);
-      
       this.amenitiesMatched = true;
     }
   }
