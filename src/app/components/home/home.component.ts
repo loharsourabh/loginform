@@ -34,10 +34,12 @@ export class HomeComponent implements OnInit, DoCheck {
   }
   
   updateCitySearch(cityName: string) {
-    this.hotels.getHotels(cityName).subscribe((data: any) => {
-      this.allHotels = data.data;
-      this.filteredHotels = data.data;
-    })
+    if (cityName.length) {
+      this.hotels.getHotels(cityName).subscribe((data: any) => {
+        this.allHotels = data.data;
+        this.filteredHotels = data.data;
+      })
+    }
   }
 
   logout() {
@@ -49,7 +51,6 @@ export class HomeComponent implements OnInit, DoCheck {
     const userString = localStorage.getItem('login');
     
     if (userString) {
-      console.log(['here']);
       this.loggedUser = JSON.parse(userString).username;
 
       this.hotels.getHotels('Udaipur').subscribe((data: any) => {

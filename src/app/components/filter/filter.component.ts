@@ -13,11 +13,11 @@ export class FilterComponent {
   hotelSearch = '';
   citySearch = '';
   listDisplay = 'none';
+  checkboxFlag: any = '';
 
   toggleAmenityList() {
     this.listDisplay = this.listDisplay === 'none' ? 'flex' : 'none'
   }
-
 
   emitHotelSearch(value: string) {
     this.hotelSearch = value;
@@ -25,6 +25,7 @@ export class FilterComponent {
   }
 
   emitCitySearch(event: any) {
+    console.log(this.checkboxFlag);
     if (event.key === 'Enter') {
       this.citySearchEvent.emit(this.citySearch);
     }
