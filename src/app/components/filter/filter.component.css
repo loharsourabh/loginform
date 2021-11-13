@@ -32,6 +32,7 @@ button.filter_input {
 .filter_amenities_list {
     position: absolute;
     height: 30em;
+    padding: 0.5em;
     border: 1px solid black;
     border-radius: 0.25em;
     margin-top: 0.5em;

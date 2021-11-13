@@ -17,16 +17,20 @@
         <button
             class='filter_input'
             (click)='toggleAmenityList()'
-        >Pick services</button>
+        >Filter by services</button>
         <div
             class='filter_amenities_list'
             [style.display]='listDisplay'
         >
             <label
                 class='filter_amenity'
-                *ngFor='let amenity of allAmenities'
+                *ngFor='let amenity of allAmenities; let i = index'
             >
-                <input type='checkbox' [(ngModel)]='checkboxFlag'>
+                <input
+                    type='checkbox'
+                    [ngModel]='amenitiesChecked[i].checked'
+                    (ngModelChange)='updateAmenitiesChecked($event, i)'
+                >
                 {{amenity.name}}
             </label>
         </div>

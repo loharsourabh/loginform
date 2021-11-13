@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit, DoCheck {
   filteredHotels: any = [];
   allAmenities: any = [];
   amenityNames: any = [];
+  amenitiesChecked: any = [];
   amenitiesMatched = false;
   hotelSearch = '';
 
@@ -42,6 +43,10 @@ export class HomeComponent implements OnInit, DoCheck {
     }
   }
 
+  updateAmenitiesChecked(value: any) {
+    this.amenitiesChecked = value;
+  }
+
   logout() {
     this.loggedUser = null;
     localStorage.removeItem('login');
@@ -64,7 +69,7 @@ export class HomeComponent implements OnInit, DoCheck {
       });
     }
   }
-  
+
   ngDoCheck() {
     // matching amenity ids
     if (
